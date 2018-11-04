@@ -5,10 +5,10 @@
 Servo servoMotor;
 
 void setup() {
-  // Iniciamos el monitor serie para mostrar el resultado
+  // Iniciamos el monitor serie en 9600 baudios
   Serial.begin(9600);
 
-  // Iniciamos el servo para que empiece a trabajar con el pin 9
+  // Iniciamos el servo en el pin 9
   servoMotor.attach(9);
 }
 
