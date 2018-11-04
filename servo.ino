@@ -1,9 +1,13 @@
  
-#include <Servo.h> // Incluímos la librería servo.h
+#include <Servo.h> 
+// Incluímos la librería servo.h
 
-// Declaramos la variable para controlar el servo
+
 Servo servoMotor;
+// Declaramos la variable para controlar el servo
 
+
+//funcion de configuraciones e inicializacion
 void setup() {
   // Iniciamos el monitor serie en 9600 baudios
   Serial.begin(9600);
