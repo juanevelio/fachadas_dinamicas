@@ -3,7 +3,7 @@
 * Modulo de server con socket.io
 * Modelo cliente-Servidor con Express
 
-APP PASO A PASO
+##APP PASO A PASO
   1. ejecutar en la terminal-> npm install pkg //para instalar el package json
   2. instalar la biblioteca serialport  y guardarlo-> npm install serialport --save //con lo cual tenemos el pkg lock.json
   3. crear el folder server con el index.js para la lectura desde arduino requiriendo la libreria serialport
