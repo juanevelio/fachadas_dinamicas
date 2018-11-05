@@ -12,6 +12,6 @@
   5. creamos el folder public hermano de server y creamos el archivo index.html
 6. levantamos el servidor en el puerto 3000 con el comando node ./server/index.js
 
-Observaciones
+ * Observaciones *
 * debemos tener instalado node.js  (de hecho es un proyecto de node :) )
 * si vamos en nuestra app en la ruta localhost:3000/socket.io/socket.io.js tenemos la libreria socket
