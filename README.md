@@ -1,2 +1,3 @@
-# fachadas_dinamicas
-## TFG app para una fachada dinamica
+# TFG fachadas_dinamicas
+##  app para una fachada dinamica
+* Modulo de server con socket.io
