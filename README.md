@@ -15,6 +15,7 @@ linkeamos con un script socket al archivo index.html y creamos main.js para el f
 6. levantamos el servidor en el puerto 3000 con el comando node ./server/index.js
 7. incluir libreria virtual wire.h para modulo de radio
 
-Observaciones
+### Observaciones
 * debemos tener instalado node.js  (de hecho es un proyecto de node :) )
 * si vamos en nuestra app en la ruta localhost:3000/socket.io/socket.io.js tenemos la libreria socket
+* Aplicaremos la biblioteca para servos varSpeedServo, que amplía la biblioteca estándar servo.h con la capacidad de configurar la velocidad y esperar a que se complete la posición de manera asincrona.
