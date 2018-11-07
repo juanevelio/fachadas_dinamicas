@@ -1,7 +1,7 @@
 # TFG fachadas_dinamicas
 ##  app para una fachada cinetica
-* Modulo de server con socket.io
-* Modelo cliente-Servidor con Express
+* Modulo de server con [**SOCKET.IO**](https://socket.io)
+* Modelo cliente-Servidor con el framework [**EXPRESS**](http://expressjs.com/)
 
 ## APP PASO A PASO
 
