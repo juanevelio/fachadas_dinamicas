@@ -17,7 +17,7 @@ linkeamos con un script socket al archivo index.html y creamos main.js para el f
 
 ### Observaciones
 * debemos tener instalado node.js  (de hecho es un proyecto de node :) )
-* si vamos en nuestra app en la ruta localhost:3000/socket.io/socket.io.js tenemos la libreria socket
+* si vamos en nuestra app en la ruta localhost:3000/socket.io/socket.io.js tenemos la libreria [socket] (https://socket.io/)
 * Aplicaremos la biblioteca para servos varSpeedServo, que amplía la biblioteca estándar servo.h con la capacidad de configurar la velocidad y esperar a que se complete la posición de manera asincrona.
 * aplicamos sockets por que a diferencia de la tecnologia ajax no depende de un evento del lado del cliente 
 para mostrar los cambios.
