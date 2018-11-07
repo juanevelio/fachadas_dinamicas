@@ -16,9 +16,10 @@ linkeamos con un script socket al archivo index.html y creamos main.js para el f
 7. incluir libreria virtual wire.h para modulo de radio
 8.Radio emisor forma parte del modulo PC-UNO:
 
+  ### **MODULO EMISOR**
+![EMISOR RF](http://www.tecnosurf.com/TFG/img/conexion_RF_serial.JPG)
   ### **MODULO RECEPTOR**
-![EMISOR](http://www.tecnosurf.com/TFG/img/conexion_RF_serial.JPG)
-
+![RECEPTOR RF](http://www.tecnosurf.com/TFG/img/conexion_RF_conversor_serial.JPG)
 ### Observaciones
 * debemos tener instalado node.js  (de hecho es un proyecto de node :) )
 * si vamos en nuestra app en la ruta localhost:3000/socket.io/socket.io.js tenemos la libreria [socket](https://socket.io)
