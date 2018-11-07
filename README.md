@@ -21,4 +21,4 @@ linkeamos con un script socket al archivo index.html y creamos main.js para el f
 * Aplicaremos la biblioteca para servos varSpeedServo, que amplía la biblioteca estándar servo.h con la capacidad de configurar la velocidad y esperar a que se complete la posición de manera asincrona.
 * aplicamos sockets por que a diferencia de la tecnologia ajax no depende de un evento del lado del cliente 
 para mostrar los cambios.
-*datos del clima con API  de !(DARKSKY)[https://api.darksky.net]
+*datos del clima con API  proveido por ![https://api.darksky.net](DARKSKY)
