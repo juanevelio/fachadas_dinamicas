@@ -1,5 +1,5 @@
-# TFG fachadas_dinamicas
-##  app para una fachada cinetica
+# TFG app para una fachada cinetica
+
 1. Modulo de server con [**SOCKET.IO**](https://socket.io).
 1. Modelo cliente-Servidor con el framework [**EXPRESS**](http://expressjs.com/).
 1. Datos del clima:   API  proveido por [DARKSKY](https://darksky.net)
