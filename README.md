@@ -16,7 +16,7 @@ linkeamos con un script socket al archivo index.html y creamos main.js para el f
 7. incluir libreria virtual wire.h para modulo de radio
 8.Radio emisor forma parte del modulo PC-UNO:
 
-  ###**MODULO RECEPTOR**
+  ### **MODULO RECEPTOR**
 ![EMISOR](http://www.tecnosurf.com/TFG/img/conexion_RF_serial.JPG)
 
 ### Observaciones
