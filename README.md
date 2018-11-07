@@ -1,8 +1,8 @@
 # TFG fachadas_dinamicas
 ##  app para una fachada cinetica
-1. Modulo de server con [**SOCKET.IO**](https://socket.io)
-1. Modelo cliente-Servidor con el framework [**EXPRESS**](http://expressjs.com/)
-1.datos del clima con API  proveido por [DARKSKY](https://darksky.net)
+1. Modulo de server con [**SOCKET.IO**](https://socket.io).
+1. Modelo cliente-Servidor con el framework [**EXPRESS**](http://expressjs.com/).
+1. Datos del clima:   API  proveido por [DARKSKY](https://darksky.net)
 ## APP PASO A PASO
 
 1. ejecutar en la terminal-> npm install pkg //para instalar el package [json](https://www.json.org/)
