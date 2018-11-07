@@ -1,8 +1,8 @@
 # TFG fachadas_dinamicas
 ##  app para una fachada cinetica
-* Modulo de server con [**SOCKET.IO**](https://socket.io)
-* Modelo cliente-Servidor con el framework [**EXPRESS**](http://expressjs.com/)
-
+1. Modulo de server con [**SOCKET.IO**](https://socket.io)
+1. Modelo cliente-Servidor con el framework [**EXPRESS**](http://expressjs.com/)
+1.datos del clima con API  proveido por [DARKSKY](https://darksky.net)
 ## APP PASO A PASO
 
 1. ejecutar en la terminal-> npm install pkg //para instalar el package [json](https://www.json.org/)
@@ -21,4 +21,4 @@ linkeamos con un script socket al archivo index.html y creamos main.js para el f
 * Aplicaremos la biblioteca para servos varSpeedServo, que amplía la biblioteca estándar servo.h con la capacidad de configurar la velocidad y esperar a que se complete la posición de manera asincrona.
 * aplicamos sockets por que a diferencia de la tecnologia ajax no depende de un evento del lado del cliente 
 para mostrar los cambios.
-*datos del clima con API  proveido por [DARKSKY](https://darksky.net)
+
