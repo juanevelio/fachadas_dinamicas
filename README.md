@@ -26,4 +26,6 @@ linkeamos con un script socket al archivo index.html y creamos main.js para el f
 * Aplicaremos la biblioteca para servos varSpeedServo, que amplía la biblioteca estándar servo.h con la capacidad de configurar la velocidad y esperar a que se complete la posición de manera asincrona.
 * aplicamos sockets por que a diferencia de la tecnologia ajax no depende de un evento del lado del cliente 
 para mostrar los cambios.
+* Miles de problemas encontrados al cargar codigo enla version china de arduino nano, se resolvio en el propio ide de arduino 
+en >>herramientas>>gestion de librerias>>install  y aplicando en >>herramientas>>procesador>>328p(old bootloader)
 
