@@ -32,4 +32,4 @@ en >>herramientas>>gestion de librerias>>install  y aplicando en >>herramientas>
 ## EL MODULO UNITARIO CON 4 PUNTOS FIJOS
 ![animacion un modulo](http://www.tecnosurf.com/TFG/img/ANIMACIO.gif)
 ## MODULO BINARIO
-![animacion un modulo](http://www.tecnosurf.com/TFG/img/MODULOS_VINDING.png)
+![animacion un modulo](http://www.tecnosurf.com/TFG/img/MODULOS_VINDING.PNG)
