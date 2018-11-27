@@ -36,4 +36,5 @@ en >>herramientas>>gestion de librerias>>install  y aplicando en >>herramientas>
 ## PROCESO DE CREACION CON CINTA DE MONTAJE CINCADA
 ![animacion un modulo](https://github.com/juanevelio/fachadas_dinamicas/blob/master/media/WhatsApp%20Image%202018-11-07%20at%2014.24.20.jpeg)
 ## MODULO MONTADO CON SERVO MECANISMO
-![animacion un modulo](https://github.com/juanevelio/fachadas_dinamicas/blob/master/media/WhatsApp%20Image%202018-11-07%20at%2014.24.20.jpeg)
+![animacion un modulo](https://github.com/juanevelio/fachadas_dinamicas/blob/master/media/2018-11-25.mp4)
+
