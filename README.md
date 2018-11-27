@@ -33,3 +33,4 @@ en >>herramientas>>gestion de librerias>>install  y aplicando en >>herramientas>
 ![animacion un modulo](http://www.tecnosurf.com/TFG/img/ANIMACIO.gif)
 ## MODULO BINARIO
 ![animacion un modulo](http://www.tecnosurf.com/TFG/img/MODULOS_VINDING.PNG)
+![animacion un modulo](https://github.com/juanevelio/fachadas_dinamicas/blob/master/media/WhatsApp%20Image%202018-11-07%20at%2014.24.20.jpeg)
