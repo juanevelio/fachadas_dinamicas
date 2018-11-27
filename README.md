@@ -35,5 +35,5 @@ en >>herramientas>>gestion de librerias>>install  y aplicando en >>herramientas>
 ![VINDING DE VARIOS MODULOS](http://www.tecnosurf.com/TFG/img/MODULOS_VINDING.PNG)
 ## PROCESO DE CREACION CON CINTA DE MONTAJE CINCADA
 ![animacion un modulo](https://github.com/juanevelio/fachadas_dinamicas/blob/master/media/WhatsApp%20Image%202018-11-07%20at%2014.24.20.jpeg)
-## MODULO MONTADO
+## MODULO MONTADO CON SERVO MECANISMO
 ![animacion un modulo](https://github.com/juanevelio/fachadas_dinamicas/blob/master/media/WhatsApp%20Image%202018-11-07%20at%2014.24.20.jpeg)
