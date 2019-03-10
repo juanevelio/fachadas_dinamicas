@@ -1,0 +1,508 @@
+{
+  "Uuid": "b8fda6e7-717b-4188-acd0-3813a78a0937",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "RECTANGULO_DYNAMO",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Enable Python support and load DesignScript library\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\nfrom math import *\r\n\"\"\"\r\nENTRADA DE \r\nCOORDENADAS CENTER POINT\r\n\"\"\"\r\n\r\ninRadio = IN[0] \r\ncirculo= Circle.ByPlaneRadius(Plane.YZ(), inRadio)\r\n\r\n\r\nvertices= []\r\ni=0\r\nj = 0\r\nlados= IN[1]\r\nwhile (i<=lados):\r\n\tvertice = circulo.PointAtParameter(j)\r\n\tvertices.append(vertice)\r\n\tj = j + 1.000/(1.000*lados)\r\n\ti = i+1\r\npolicurva = PolyCurve.ByPoints(vertices)\r\n\r\npanel = Surface.ByPatch(policurva)\r\n\r\nv= Vector.ByTwoPoints(vertices[0], vertices[1]) \r\nlongitud= v.Length\r\n\r\nn = IN[2]\r\n\"\"\"\r\nAQUI VA LA FACHADA\r\n\"\"\"\r\nrectangulo = IN[3]\r\nfachada = Surface.ByPatch(rectangulo)\r\nuvY=[]\r\nuvZ=[]\r\nhorizontales=[]\r\nd = 1.000 / n\r\ncontador = d\r\nfor y in range(1, n):\r\n\tuvY.append(fachada.PointAtParameter(0,contador))\r\n\tuvZ.append(fachada.PointAtParameter(contador,0))\r\n\t\r\n\tcontador = d + contador\r\n\ty= y+1\r\nUV=[]\r\nfor x in uvY:\r\n\tUV.append(x.Y)\r\npuntosUV=[]\r\nfor x in UV:\r\n\tfor y in UV:\r\n\t\tpuntosUV.append(Point.ByCoordinates(0,x,y))\r\n\t\t\r\n\r\n\"\"\"\r\nAqui transladamos los paneles\r\n\"\"\"\r\np=[]\r\nfor x in puntosUV:\r\n\t\tp.append(panel.Thicken(0.1).Translate(0, x.Y, x.Z/2))\r\n\r\nsalida1=[]\r\nsalida2=[]\r\nrotacion1= IN[4]\r\nrotacion2= 180/lados+IN[5]\r\ndelta = Line.ByStartPointEndPoint(uvY[0],uvY[1]).Length\r\n#punto vector grado\r\nfor x in p:\r\n\tfor y in range(0,puntosUV.Count):\r\n\t\tif((y)%2==0 and y<n):\r\n\t\t\tsalida1.append(x.Rotate(x.Centroid(),Vector.XAxis(),rotacion1))\r\n\t\telse:\t\r\n\t\t\tsalida2.append(x.Rotate(x.Centroid(),Vector.XAxis(),rotacion2).Translate(0,delta/2,delta/2))\r\n#OUTPUTS\r\nOUT =  [salida1, salida2,puntosUV]\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "VariableInputPorts": true,
+      "Id": "bca529f8116b4f86a0860974d0725d9d",
+      "Inputs": [
+        {
+          "Id": "641606b5bdd54e7c8e441d82e2d812e6",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8792f639d64248d98ffc5cad9f903148",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1393b9654a84446f94dfbf98bf3546b4",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "324411eda4ce48e8844544b92a15b58b",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "506a83d149704c1088af88a03f51f1c1",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7e7bef93c52c4257bfd1a808f0a88589",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0f236cde43ba44ac98959630a10151fa",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Rectangle.ByWidthLength@Autodesk.DesignScript.Geometry.Plane,double,double",
+      "Id": "f7d2c2bc0ba346fea71a7ff385e7420f",
+      "Inputs": [
+        {
+          "Id": "21d1b1cfa0b24275b9c54ef8d025b10d",
+          "Name": "plane",
+          "Description": "Plane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "20af6ccedb6c494ea178b0afd496b394",
+          "Name": "width",
+          "Description": "double\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9ac3a2689c514fa3af60d8988e7dfdb3",
+          "Name": "length",
+          "Description": "double\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "faf9cdcbe0f649f3804b793189af5ba7",
+          "Name": "Rectangle",
+          "Description": "Rectangle",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a Rectangle centered at input Plane root, with input width (Plane X axis length), and length (Plane Y axis length).\n\nRectangle.ByWidthLength (plane: Plane, width: double = 1, length: double = 1): Rectangle"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "5;",
+      "Id": "797b8a453b6e46a18045399b4c99c7e1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "25a1acd2cef9456a8ef1e7c00aec3957",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Plane.YZ",
+      "Id": "94ae4353f1384ea0989cc6be564cd843",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6691c20bd39c47b4b2f4be6738a91abe",
+          "Name": "Plane",
+          "Description": "Plane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Creates a plane in the world YZ\n\nPlane.YZ ( ): Plane"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "MaximumValue": 180.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "InputValue": 90.0,
+      "Id": "1031f8b6f39249a49f9766ad78ad2488",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "eddab060cb4744e59d8fb3b2c4811e96",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces numeric values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 5,
+      "MaximumValue": 12,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "01ac3814985c4479a352b758533c14fd",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e52bbbb3ccd94b248ca8fd88535d9a4d",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 4,
+      "MaximumValue": 19,
+      "MinimumValue": 3,
+      "StepValue": 1,
+      "Id": "fb10a819c8394c7b8f56e00a9b3b61de",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e220394b40ed41418defa4cd86eb284d",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "MaximumValue": 2.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.01,
+      "InputValue": 0.25,
+      "Id": "2cbe38abeab747998589fd475b2945a0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0618027b6c904af68f7852b1f1051b0a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces numeric values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "MaximumValue": 180.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "InputValue": 45.0,
+      "Id": "1a4392e6f3cd46bba556d4031d3e7dc7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4e675ec6610445788881b2df0a8b09c5",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces numeric values."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "faf9cdcbe0f649f3804b793189af5ba7",
+      "End": "324411eda4ce48e8844544b92a15b58b",
+      "Id": "fd8887adefa341a1b3cd422aaa70d338"
+    },
+    {
+      "Start": "25a1acd2cef9456a8ef1e7c00aec3957",
+      "End": "20af6ccedb6c494ea178b0afd496b394",
+      "Id": "8593109f04754e408349aab7221db37f"
+    },
+    {
+      "Start": "25a1acd2cef9456a8ef1e7c00aec3957",
+      "End": "9ac3a2689c514fa3af60d8988e7dfdb3",
+      "Id": "ffba4d1a40e24a3ab23d0ebe031e3ed1"
+    },
+    {
+      "Start": "6691c20bd39c47b4b2f4be6738a91abe",
+      "End": "21d1b1cfa0b24275b9c54ef8d025b10d",
+      "Id": "41c9a9b84d1f4243bd24d5e2ca566baa"
+    },
+    {
+      "Start": "eddab060cb4744e59d8fb3b2c4811e96",
+      "End": "506a83d149704c1088af88a03f51f1c1",
+      "Id": "baf08a6f723f4adb81ffd724a0621626"
+    },
+    {
+      "Start": "e52bbbb3ccd94b248ca8fd88535d9a4d",
+      "End": "1393b9654a84446f94dfbf98bf3546b4",
+      "Id": "953235ec6a884b9eab64b06ef23db66a"
+    },
+    {
+      "Start": "e220394b40ed41418defa4cd86eb284d",
+      "End": "8792f639d64248d98ffc5cad9f903148",
+      "Id": "3d1978fb815e4601a20c6efcd3a8b067"
+    },
+    {
+      "Start": "0618027b6c904af68f7852b1f1051b0a",
+      "End": "641606b5bdd54e7c8e441d82e2d812e6",
+      "Id": "c60e98af890f4d67a9692cea5d7945ec"
+    },
+    {
+      "Start": "4e675ec6610445788881b2df0a8b09c5",
+      "End": "7e7bef93c52c4257bfd1a808f0a88589",
+      "Id": "38c9ccf0cbdc4b30851b53e2b7cc68dc"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.2.6826",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": 1.3755894736441294,
+      "EyeY": 0.5201682201381217,
+      "EyeZ": 2.2141867834107591,
+      "LookX": -2.6784618212614926,
+      "LookY": -0.58980718412728528,
+      "LookZ": -6.3685009262577434,
+      "UpX": 0.050603258930462622,
+      "UpY": 0.99144486137384669,
+      "UpZ": 0.12031789991968804
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "SCRIPT PYTHON ",
+        "Id": "bca529f8116b4f86a0860974d0725d9d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4825.0680034107318,
+        "Y": -49.196734338427632
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Rectangle.ByWidthLength",
+        "Id": "f7d2c2bc0ba346fea71a7ff385e7420f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4486.2320350023083,
+        "Y": 16.112156366425722
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "797b8a453b6e46a18045399b4c99c7e1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4497.3787378889747,
+        "Y": -69.135755744576329
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Plane.YZ",
+        "Id": "94ae4353f1384ea0989cc6be564cd843",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4579.9262664464513,
+        "Y": -67.608749871944212
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ROTAR",
+        "Id": "1031f8b6f39249a49f9766ad78ad2488",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4438.5660521137543,
+        "Y": 373.92622397850261
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "U",
+        "Id": "01ac3814985c4479a352b758533c14fd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4438.0683353649374,
+        "Y": 318.42971371233432
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "LADOS DEL POLIGON",
+        "Id": "fb10a819c8394c7b8f56e00a9b3b61de",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4439.8998302063428,
+        "Y": 261.90315847721354
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ESCALA",
+        "Id": "2cbe38abeab747998589fd475b2945a0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4440.9741928301037,
+        "Y": 209.14758791771897
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "desfase",
+        "Id": "1a4392e6f3cd46bba556d4031d3e7dc7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4437.8566452297264,
+        "Y": 430.71430638360823
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "9158c11ba72f4774bc2402385a38da6f",
+        "Title": "PARAMETROS",
+        "Nodes": [
+          "1031f8b6f39249a49f9766ad78ad2488",
+          "01ac3814985c4479a352b758533c14fd",
+          "fb10a819c8394c7b8f56e00a9b3b61de",
+          "2cbe38abeab747998589fd475b2945a0",
+          "1a4392e6f3cd46bba556d4031d3e7dc7"
+        ],
+        "Left": 4427.8566452297264,
+        "Top": 156.14758791771897,
+        "Width": 322.11754760037729,
+        "Height": 342.56671846588927,
+        "FontSize": 36.0,
+        "InitialTop": 209.14758791771897,
+        "InitialHeight": 426.55510991330647,
+        "TextblockHeight": 43.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "9e9f8ce6f1d149e6ac866737156777c6",
+        "Title": "FCH",
+        "Nodes": [
+          "f7d2c2bc0ba346fea71a7ff385e7420f",
+          "797b8a453b6e46a18045399b4c99c7e1",
+          "94ae4353f1384ea0989cc6be564cd843"
+        ],
+        "Left": 4476.2320350023083,
+        "Top": -122.13575574457633,
+        "Width": 236.0,
+        "Height": 283.24791211100205,
+        "FontSize": 36.0,
+        "InitialTop": -69.135755744576329,
+        "InitialHeight": 224.88967661507695,
+        "TextblockHeight": 43.0,
+        "Background": "#FFFFAA45"
+      }
+    ],
+    "X": -3029.1616578359153,
+    "Y": 155.89212809650397,
+    "Zoom": 0.82505161010788775
+  }
+}
